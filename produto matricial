@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int produto_matricial(int A[100][100], int B[100][100], int nlA, int nlB, int ncB){
+	int i, j, k, l, sum = 0;
+	int AxB[100][100];
+	
+	for(i = 0; i < nlA; i++){
+		for(j = 0; j < ncB; j++){
+			for(k = 0; k < nlB; k++){
+				sum += A[i][k] * B[k][j];
+			}
+			AxB[i][j] = sum;
+			sum = 0;
+		}
+	}
+	printf("\nMatriz produto:\n");
+	for(i = 0; i < nlA; i++){
+		for(j = 0; j < ncB; j++){
+			printf("%5d", AxB[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+main(){
+	int A[100][100], B[100][100];
+	int nlA, nlB, ncB, i, j;
+	
+	printf("Produto matricial\n\nDigite o numero de linhas\nMatriz A: ");
+	scanf("%d", &nlA);
+	printf("Colunas matriz A / Linhas matriz B: ");
+	scanf("%d", &nlB);
+	printf("Numero de colunas\nMatriz B: ");
+	scanf("%d", &ncB);
+	
+	printf("Digite os elementos da matriz em ordem de leitura\nMatriz A:\n");
+	for(i = 0; i < nlA; i++){
+		for(j = 0; j < nlB; j++){
+			scanf("%d", &A[i][j]);
+		}
+	}
+	printf("Matriz B:\n");
+	for(i = 0; i < nlB; i++){
+		for(j = 0; j < ncB; j++){
+			scanf("%d", &B[i][j]);
+		}
+	}
+	
+	return produto_matricial(A, B, nlA, nlB, ncB);
+}
